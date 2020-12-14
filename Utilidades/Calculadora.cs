@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utilidades {
     public class Calculadora {
+        private string Saluda(string nombre) {
+            return $"Hola {nombre}";
+        }
 
         public double Suma(double a, double b) {
             return a + b;
@@ -17,7 +20,13 @@ namespace Utilidades {
             return a * b;
         }
         public double Divide(double a, double b) {
+            if (b == 0)
+                throw new DivideByZeroException();
             return a / b;
+        }
+
+        public double Raiz(double a) {
+            return Math.Sqrt(a);
         }
     }
 }
