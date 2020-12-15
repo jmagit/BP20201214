@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 namespace Utilidades {
     public class Calculadora {
         private string Saluda(string nombre) {
+            if (nombre != null && nombre.ToUpper() != null && nombre.ToUpper().Length == 0)
+                return "nada";
+            if(nombre?.ToUpper()?.Length == 0)
+                return "nada";
+            // var rslt = (nombre ?? "").Length; // nombre != null ? nombre : ""
+            var rslt = (nombre ?? throw new Exception("Algo")).Length;
             return $"Hola {nombre}";
         }
 

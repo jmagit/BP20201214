@@ -82,9 +82,9 @@ namespace GildedRose.Tests {
             UpdateQualityTest("Backstage passes to a TAFKAL80ETC concert", sellIn, quality, sellInResult, qualityResult);
         }
         [TestMethod()]
-        [Ignore]
+        // [Ignore]
         [DataRow(11, 10, 10, 8)]
-        [DataRow(7, 1, 6, -1)]
+        [DataRow(7, 1, 5, 0)]
         [DataRow(-5, 10, -6, 6)]
         [DataRow(0, 3, -1, 0)]
         public void ProductConjuredTest(int sellIn, int quality, int sellInResult, int qualityResult) {
