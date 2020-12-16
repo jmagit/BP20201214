@@ -88,7 +88,7 @@ namespace GildedRose.Tests {
             UpdateQualityTest("Backstage passes to a TAFKAL80ETC concert", sellIn, quality, sellInResult, qualityResult);
         }
         [TestMethod()]
-        // [Ignore]
+        [Ignore]
         [DataRow(11, 10, 10, 8)]
         [DataRow(7, 1, 6, 0)]
         [DataRow(-5, 10, -6, 6)]

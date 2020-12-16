@@ -67,15 +67,15 @@ namespace GildedRose {
         }
 
         private bool EsEntrada(Item item) {
-            return item.Name =="Backstage passes to a TAFKAL80ETC concert";
+            return item.Name == "Backstage passes to a TAFKAL80ETC concert";
         }
 
         private bool EsQueso(Item item) {
-            return item.Name =="Aged Brie";
+            return item.Name == "Aged Brie";
         }
 
         private bool EsConjurado(Item item) {
-            return item.Name =="Conjured Mana Cake";
+            return item.Name == "Conjured Mana Cake";
         }
 
         private bool Quedan5DiasOMenos(Item item) {
@@ -142,53 +142,102 @@ namespace GildedRose {
             }
         }
         /*
+                IList<Item> Items;
+                public GildedRose(IList<Item> Items) {
+                    this.Items = Items;
+                }
                 public void UpdateQuality() {
-                    for (var i = 0; i < Items.Count; i++) {
-                        if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert") {
-                            if (Items[i].Quality > 0) {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros") {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
+                    foreach (var item in Items) {
+                        if (EsSulfuras(item)) continue;
+                        if (NoEsQueso(item) && NoEsEntrada(item)) {
+                            Quita1aCalidad(item);
                         } else {
-                            if (Items[i].Quality < 50) {
-                                Items[i].Quality = Items[i].Quality + 1;
-                                if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert") {
-                                    if (Items[i].SellIn < 11) {
-                                        if (Items[i].Quality < 50) {
-                                            Items[i].Quality = Items[i].Quality + 1;
-                                        }
-                                    }
-                                    if (Items[i].SellIn < 6) {
-                                        if (Items[i].Quality < 50) {
-                                            Items[i].Quality = Items[i].Quality + 1;
-                                        }
-                                    }
+                            Añade1aCalidad(item);
+                            if (NoEsEntrada(item)) {
+                                if (QuedanMenosDe11Dias(item)) {
+                                    Añade1aCalidad(item);
+                                }
+                                if (QuedanMenosDe6Dias(item)) {
+                                    Añade1aCalidad(item);
                                 }
                             }
                         }
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros") {
-                            Items[i].SellIn = Items[i].SellIn - 1;
-                        }
-                        if (Items[i].SellIn < 0) {
-                            if (Items[i].Name != "Aged Brie") {
-                                if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert") {
-                                    if (Items[i].Quality > 0) {
-                                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros") {
-                                            Items[i].Quality = Items[i].Quality - 1;
-                                        }
-                                    }
+                        QuitaUnDia(item);
+                        if (EstaCaducado(item)) {
+                            if (NoEsQueso(item)) {
+                                if (NoEsEntrada(item)) {
+                                    Quita1aCalidad(item);
                                 } else {
-                                    Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                                    PonA0Calidad(item);
                                 }
                             } else {
-                                if (Items[i].Quality < 50) {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                                Añade1aCalidad(item);
                             }
                         }
                     }
                 }
-        */
+
+                private void PonA0Calidad(Item item) {
+                    item.Quality = 0;
+                }
+
+                private bool EstaCaducado(Item item) {
+                    return item.SellIn < 0;
+                }
+
+                private void QuitaUnDia(Item item) {
+                    item.SellIn = item.SellIn - 1;
+                }
+
+                private bool QuedanMenosDe6Dias(Item item) {
+                    return item.SellIn < 6;
+                }
+
+                private bool QuedanMenosDe11Dias(Item item) {
+                    return item.SellIn < 11;
+                }
+
+                private void Añade1aCalidad(Item item) {
+                    if (NoEsMaximaCalidad(item)) {
+                        item.Quality = item.Quality + 1;
+                    }
+                }
+
+                private bool NoEsMaximaCalidad(Item item) {
+                    return item.Quality < 50;
+                }
+
+                private void Quita1aCalidad(Item item) {
+                    if (QuedaCalidad(item))
+                        item.Quality = item.Quality - 1;
+                }
+
+                private bool QuedaCalidad(Item item) {
+                    return item.Quality > 0;
+                }
+
+                private bool EsSulfuras(Item item) {
+                    return item.Name == "Sulfuras, Hand of Ragnaros";
+                }
+                private bool NoEsSulfuras(Item item) {
+                    return !EsSulfuras(item);
+                }
+
+                private bool EsEntrada(Item item) {
+                    return item.Name == "Backstage passes to a TAFKAL80ETC concert";
+                }
+
+                private bool NoEsEntrada(Item item) {
+                    return !EsEntrada(item);
+                }
+
+                private bool EsQueso(Item item) {
+                    return item.Name == "Aged Brie";
+                }
+
+                private bool NoEsQueso(Item item) {
+                    return !EsQueso(item);
+                }
+                */
     }
 }
