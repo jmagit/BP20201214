@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace GildedRose {
     public class GildedRose {
+        public static readonly int CALIDAD_MINIMA = 0;
         public static readonly int CALIDAD_MAXIMA = 50;
         public static readonly int DEGRADACION_ESTANDAR = 1;
 
@@ -10,129 +13,134 @@ namespace GildedRose {
             this.items = Items;
         }
         public void UpdateQuality() {
-            for (int productIndex = 0; productIndex < items.Count; productIndex++) {
-                if (EsSulfuras(productIndex))
+            foreach (var item in items) {
+                if (EsSulfuras(item))
                     continue; // con sulfuras no se hace nada
-                QuitaUnDia(productIndex);
-                if (EsQueso(productIndex)) {
-                    UpdateQuesoQuality(productIndex);
-                } else if (EsEntrada(productIndex)) {
-                    UpdateEntradaQuality(productIndex);
-                } else if (EsConjurado(productIndex)) {
-                    UpdateConjuradoQuality(productIndex);
+                QuitaUnDia(item);
+                if (EsQueso(item)) {
+                    UpdateQuesoQuality(item);
+                } else if (EsEntrada(item)) {
+                    UpdateEntradaQuality(item);
+                } else if (EsConjurado(item)) {
+                    UpdateConjuradoQuality(item);
                 } else {
-                    UpdateProductosQuality(productIndex);
+                    UpdateProductosQuality(item);
                 }
             }
         }
 
-        private void UpdateQuesoQuality(int productIndex) {
-            AñadeCalidad(productIndex, HaCaducado(productIndex) ? 2 : 1);
+        private void UpdateQuesoQuality(Item item) {
+            AñadeCalidad(item, HaCaducado(item) ? 2 : 1);
         }
 
-        private void UpdateEntradaQuality(int productIndex) {
-            if (HaCaducado(productIndex)) {
-                PonACeroCalidad(productIndex);
-            } else if (Quedan5DiasOMenos(productIndex)) {
-                AñadeCalidad(productIndex, 3);
-            } else if (Quedan10diasOMenos(productIndex)) {
-                AñadeCalidad(productIndex, 2);
+        private void UpdateEntradaQuality(Item item) {
+            if (HaCaducado(item)) {
+                PonACeroCalidad(item);
+            } else if (Quedan5DiasOMenos(item)) {
+                AñadeCalidad(item, 3);
+            } else if (Quedan10diasOMenos(item)) {
+                AñadeCalidad(item, 2);
             } else {
-                AñadeCalidad(productIndex, 1);
+                AñadeCalidad(item, 1);
             }
         }
 
-        private void UpdateConjuradoQuality(int productIndex) {
-            if (HaCaducado(productIndex)) {
+        private void UpdateConjuradoQuality(Item item) {
+            if (HaCaducado(item)) {
                 // caducado degrada al doble de velocidad
-                QuitaCalidad(productIndex, 4 * DEGRADACION_ESTANDAR);
+                QuitaCalidad(item, 4 * DEGRADACION_ESTANDAR);
             } else {
-                QuitaCalidad(productIndex, 2 * DEGRADACION_ESTANDAR);
+                QuitaCalidad(item, 2 * DEGRADACION_ESTANDAR);
             }
         }
 
-        private void UpdateProductosQuality(int productIndex) {
-            if (HaCaducado(productIndex)) {
-                QuitaCalidad(productIndex, 2 * DEGRADACION_ESTANDAR);
+        private void UpdateProductosQuality(Item item) {
+            if (HaCaducado(item)) {
+                QuitaCalidad(item, 2 * DEGRADACION_ESTANDAR);
             } else {
-                QuitaCalidad(productIndex, DEGRADACION_ESTANDAR);
+                QuitaCalidad(item, DEGRADACION_ESTANDAR);
             }
         }
 
-        private bool EsSulfuras(int productIndex) {
-            return items[productIndex].Name == "Sulfuras, Hand of Ragnaros";
+        private bool EsSulfuras(Item item) {
+            return item.Name == "Sulfuras, Hand of Ragnaros";
         }
 
-        private bool EsEntrada(int productIndex) {
-            return items[productIndex].Name =="Backstage passes to a TAFKAL80ETC concert";
+        private bool EsEntrada(Item item) {
+            return item.Name =="Backstage passes to a TAFKAL80ETC concert";
         }
 
-        private bool EsQueso(int productIndex) {
-            return items[productIndex].Name =="Aged Brie";
+        private bool EsQueso(Item item) {
+            return item.Name =="Aged Brie";
         }
 
-        private bool EsConjurado(int productIndex) {
-            return items[productIndex].Name =="Conjured Mana Cake";
+        private bool EsConjurado(Item item) {
+            return item.Name =="Conjured Mana Cake";
         }
 
-        private bool Quedan5DiasOMenos(int productIndex) {
-            return items[productIndex].SellIn < 5;
+        private bool Quedan5DiasOMenos(Item item) {
+            return item.SellIn < 5;
         }
 
-        private bool Quedan10diasOMenos(int productIndex) {
-            return items[productIndex].SellIn < 10;
+        private bool Quedan10diasOMenos(Item item) {
+            return item.SellIn < 10;
         }
 
-        private bool HaCaducado(int productIndex) {
-            // los dias negativos son cuando esta caducado
-            return items[productIndex].SellIn < 0;
+        private bool HaCaducado(Item item) {
+            // los días negativos son cuando esta caducado
+            return item.SellIn < 0;
         }
 
-        private void QuitaUnDia(int productIndex) {
-            items[productIndex].SellIn = items[productIndex].SellIn - 1;
+        private void QuitaUnDia(Item item) {
+            item.SellIn = item.SellIn - 1;
         }
 
-        private void PonACeroCalidad(int productIndex) {
-            QuitaCalidad(productIndex, items[productIndex].Quality);
+        private void PonACeroCalidad(Item item) {
+            QuitaCalidad(item, item.Quality);
         }
 
-        private void QuitaCalidad(int productIndex, int cantidad) {
-            //		int rslt = items[productIndex].Quality - cantidad;
-            //		items[productIndex].Quality = rslt < 0 ? 0 : rslt;
+        private void QuitaCalidad(Item item, int cantidad) {
+            //		int rslt = item.Quality - cantidad;
+            //		item.Quality = rslt < CALIDAD_MINIMA ? CALIDAD_MINIMA : rslt;
             //
-            //		items[productIndex].Quality = items[productIndex].Quality - cantidad < 0 ?
-            //				0 : items[productIndex].Quality - cantidad;
+            //		item.Quality = item.Quality - cantidad < CALIDAD_MINIMA ?
+            //				CALIDAD_MINIMA : item.Quality - cantidad;
 
-            if (items[productIndex].Quality - cantidad < 0) {
-                items[productIndex].Quality = 0;
+            if (item.Quality - cantidad < CALIDAD_MINIMA) {
+                item.Quality = CALIDAD_MINIMA;
             } else {
-                items[productIndex].Quality = items[productIndex].Quality - cantidad;
+                item.Quality = item.Quality - cantidad;
             }
 
-            //		items[productIndex].Quality = items[productIndex].Quality - 1;
-            //		if (items[productIndex].Quality < 0) {
-            //			items[productIndex].Quality = 0;
+            //		item.Quality = item.Quality - cantidad;
+            //		if (item.Quality < CALIDAD_MINIMA) {
+            //			item.Quality = CALIDAD_MINIMA;
             //		}
         }
 
-        private void AñadeCalidad(int productIndex, int cantidad) {
-            if (items[productIndex].Quality + cantidad > CALIDAD_MAXIMA) {
-                items[productIndex].Quality = CALIDAD_MAXIMA;
+        private void AñadeCalidad(Item item, int cantidad) {
+            if (item.Quality + cantidad > CALIDAD_MAXIMA) {
+                item.Quality = CALIDAD_MAXIMA;
             } else {
-                items[productIndex].Quality = items[productIndex].Quality + cantidad;
+                item.Quality = item.Quality + cantidad;
             }
         }
 
-        //public Item[] Items {
-        //	get {
-        //		if(Items is )
-        //		return Items.clone();
-        //	}
-        //}
+        public IList<Item> Items {
+            get {
+                if (items is ICloneable cloneable)
+                    return cloneable.Clone() as IList<Item>;
+                return items;
+            }
+        }
 
-        //public Item getItem(int productIndex) {
-        //	return Items[productIndex];
-        //}
+        public Item this[int productIndex] {
+            get {
+                if (0 <= productIndex && productIndex < items.Count)
+                    return items[productIndex];
+                throw new ProductosException("Indice fuera de rango");
+            }
+        }
         /*
                 public void UpdateQuality() {
                     for (var i = 0; i < Items.Count; i++) {
@@ -145,14 +153,12 @@ namespace GildedRose {
                         } else {
                             if (Items[i].Quality < 50) {
                                 Items[i].Quality = Items[i].Quality + 1;
-
                                 if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert") {
                                     if (Items[i].SellIn < 11) {
                                         if (Items[i].Quality < 50) {
                                             Items[i].Quality = Items[i].Quality + 1;
                                         }
                                     }
-
                                     if (Items[i].SellIn < 6) {
                                         if (Items[i].Quality < 50) {
                                             Items[i].Quality = Items[i].Quality + 1;
@@ -161,11 +167,9 @@ namespace GildedRose {
                                 }
                             }
                         }
-
                         if (Items[i].Name != "Sulfuras, Hand of Ragnaros") {
                             Items[i].SellIn = Items[i].SellIn - 1;
                         }
-
                         if (Items[i].SellIn < 0) {
                             if (Items[i].Name != "Aged Brie") {
                                 if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert") {

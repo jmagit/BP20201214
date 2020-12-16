@@ -25,12 +25,18 @@ namespace GildedRose.Tests {
         public void GildedRoseTest() {
             IList<Item> Items = new List<Item> { new Item { Name = "Normal Product", SellIn = 1, Quality = 2 } };
             GildedRose app = new GildedRose(Items);
-//            CollectionAssert.AreEqual(Items as ICollection<Item>, app.GetType().GetField("Items").GetValue(app) as ICollection<Item>);
+            Assert.IsNotNull(app.GetType().GetField("items", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(app));
+            CollectionAssert.AreEqual(Items as List<Item>, app.GetType().GetField("items", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(app) as List<Item>);
             
         }
 
         private void UpdateQualityTest(string name, int sellIn, int quality, int sellInResult, int qualityResult) {
-            IList<Item> Items = new List<Item> { new Item { Name = name, SellIn = sellIn, Quality = quality } };
+            UpdateQualityTest(new Item { Name = name, SellIn = sellIn, Quality = quality }, sellInResult, qualityResult);
+        }
+
+        private void UpdateQualityTest(Item item, int sellInResult, int qualityResult) {
+            string name = item.Name;
+            IList<Item> Items = new List<Item> { item };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
             //Assert.AreEqual(name, Items[0].Name);
@@ -84,7 +90,7 @@ namespace GildedRose.Tests {
         [TestMethod()]
         // [Ignore]
         [DataRow(11, 10, 10, 8)]
-        [DataRow(7, 1, 5, 0)]
+        [DataRow(7, 1, 6, 0)]
         [DataRow(-5, 10, -6, 6)]
         [DataRow(0, 3, -1, 0)]
         public void ProductConjuredTest(int sellIn, int quality, int sellInResult, int qualityResult) {
