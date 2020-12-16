@@ -88,7 +88,7 @@ namespace GildedRose.Tests {
             UpdateQualityTest("Backstage passes to a TAFKAL80ETC concert", sellIn, quality, sellInResult, qualityResult);
         }
         [TestMethod()]
-        [Ignore]
+        //[Ignore]
         [DataRow(11, 10, 10, 8)]
         [DataRow(7, 1, 6, 0)]
         [DataRow(-5, 10, -6, 6)]
@@ -96,5 +96,18 @@ namespace GildedRose.Tests {
         public void ProductConjuredTest(int sellIn, int quality, int sellInResult, int qualityResult) {
             UpdateQualityTest("Conjured Mana Cake", sellIn, quality, sellInResult, qualityResult);
         }
+        [TestMethod()]
+        [DataRow(3, 2, 1)]
+        [DataRow(0, 0, 1)]
+        [DataRow(3, 0, 4)]
+        public void QuitaCalidadTest(int quality, int qualityResult, int cantidad) {
+            var item = new Item { Name = "Normal Product", SellIn = 1, Quality = quality };
+            IList<Item> Items = new List<Item> { item };
+            GildedRose app = new GildedRose(Items);
+            MetodoPrivate(app, "QuitaCalidad", new object[] { item, cantidad });
+            Assert.AreEqual(qualityResult, item.Quality);
+        }
+
+
     }
 }

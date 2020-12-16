@@ -16,7 +16,7 @@ namespace GildedRose {
             foreach (var item in items) {
                 if (EsSulfuras(item))
                     continue; // con sulfuras no se hace nada
-                QuitaUnDia(item);
+                QuitaDias(item);
                 if (EsQueso(item)) {
                     UpdateQuesoQuality(item);
                 } else if (EsEntrada(item)) {
@@ -91,8 +91,8 @@ namespace GildedRose {
             return item.SellIn < 0;
         }
 
-        private void QuitaUnDia(Item item) {
-            item.SellIn = item.SellIn - 1;
+        private void QuitaDias(Item item, int dias = 1) {
+            item.SellIn = item.SellIn - dias;
         }
 
         private void PonACeroCalidad(Item item) {
