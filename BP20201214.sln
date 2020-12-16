@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose\Gi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose.Tests", "GildedRose.Tests\GildedRose.Tests.csproj", "{23FB6C4F-BF9C-43F9-AD87-34364CA0948D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Ejercicios", "1. Ejercicios", "{0079F533-1DBB-4DE5-B077-51D61AE9282D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Ejemplos", "2. Ejemplos", "{BD226F0F-0973-4E11-B9C3-BF000C6B1E7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF7A3689-0FF5-4551-9CEA-519FC4B6DC04} = {BD226F0F-0973-4E11-B9C3-BF000C6B1E7F}
+		{B072A663-9A18-46CD-889A-3749EBCDECC9} = {BD226F0F-0973-4E11-B9C3-BF000C6B1E7F}
+		{22948D7C-8C16-47C0-8218-20E89E3B28B3} = {0079F533-1DBB-4DE5-B077-51D61AE9282D}
+		{23FB6C4F-BF9C-43F9-AD87-34364CA0948D} = {0079F533-1DBB-4DE5-B077-51D61AE9282D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BCD1CE5D-BDD1-4D53-B7B2-8833BBF61CB7}

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Calculadora.cs" />
     <Compile Include="CalculadoraException.cs" />
+    <Compile Include="Model\Entidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

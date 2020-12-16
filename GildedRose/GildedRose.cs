@@ -9,6 +9,7 @@ namespace GildedRose {
         public static readonly int DEGRADACION_ESTANDAR = 1;
 
         IList<Item> items;
+
         public GildedRose(IList<Item> Items) {
             this.items = Items;
         }
@@ -90,7 +91,11 @@ namespace GildedRose {
             // los días negativos son cuando esta caducado
             return item.SellIn < 0;
         }
-
+        /// <summary>
+        /// Método que quita días ...
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="dias"></param>
         private void QuitaDias(Item item, int dias = 1) {
             item.SellIn = item.SellIn - dias;
         }
