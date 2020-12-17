@@ -6,27 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using Grupo10.Tests.Core;
 
 namespace GildedRose.Tests {
     [TestClass()]
-    public class GildedRoseTests {
-        protected object FuncionPrivate(object instancia, string metodo, object[] parameters = null) {
-            MethodInfo privado = instancia.GetType()
-                .GetMethod(metodo, BindingFlags.NonPublic | BindingFlags.Instance);
-            return privado.Invoke(instancia, parameters);
-        }
-        protected void MetodoPrivate(object instancia, string metodo, object[] parameters = null) {
-            MethodInfo privado = instancia.GetType()
-                .GetMethod(metodo, BindingFlags.NonPublic | BindingFlags.Instance);
-            privado.Invoke(instancia, parameters);
-        }
-
+    public class GildedRoseTests : TestsBase {
         [TestMethod()]
         public void GildedRoseTest() {
             IList<Item> Items = new List<Item> { new Item { Name = "Normal Product", SellIn = 1, Quality = 2 } };
             GildedRose app = new GildedRose(Items);
-            Assert.IsNotNull(app.GetType().GetField("items", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(app));
-            CollectionAssert.AreEqual(Items as List<Item>, app.GetType().GetField("items", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(app) as List<Item>);
+            var rslt = app.GetType().GetField("items", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(app) as List<Item>;
+            Assert.IsNotNull(rslt);
+            CollectionAssert.AreEqual(Items as List<Item>, rslt);
             
         }
 
@@ -39,18 +30,21 @@ namespace GildedRose.Tests {
             IList<Item> Items = new List<Item> { item };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            //Assert.AreEqual(name, Items[0].Name);
-            //Assert.AreEqual(sellInResult, Items[0].SellIn, "SellIn");
-            //Assert.AreEqual(qualityResult, Items[0].Quality, "Quality");
-            string msg = "";
-            if (name != Items[0].Name)
-                msg += $"Name: Se esperaba <{name}>, pero es <{Items[0].Name}>. ";
-            if (sellInResult != Items[0].SellIn)
-                msg += $"SellIn: Se esperaba <{sellInResult}>, pero es <{Items[0].SellIn}>. ";
-            if (qualityResult != Items[0].Quality)
-                msg += $"Quality: Se esperaba <{qualityResult}>, pero es <{Items[0].Quality}>. ";
-            if (msg != "")
-                Assert.Fail(msg);
+            Assert.That.Multiple(
+                () => Assert.AreEqual(name, app.Items[0].Name),
+                () => Assert.AreEqual(sellInResult, app.Items[0].SellIn, "SellIn"),
+                () => Assert.AreEqual(qualityResult, app.Items[0].Quality, "Quality")
+                , () => throw new Exception("Error forzado")
+            );
+            //string msg = "";
+            //if (name != Items[0].Name)
+            //    msg += $"Name: Se esperaba <{name}>, pero es <{Items[0].Name}>. ";
+            //if (sellInResult != Items[0].SellIn)
+            //    msg += $"SellIn: Se esperaba <{sellInResult}>, pero es <{Items[0].SellIn}>. ";
+            //if (qualityResult != Items[0].Quality)
+            //    msg += $"Quality: Se esperaba <{qualityResult}>, pero es <{Items[0].Quality}>. ";
+            //if (msg != "")
+            //    Assert.Fail(msg);
         }
 
         [TestMethod()]
@@ -104,10 +98,10 @@ namespace GildedRose.Tests {
             var item = new Item { Name = "Normal Product", SellIn = 1, Quality = quality };
             IList<Item> Items = new List<Item> { item };
             GildedRose app = new GildedRose(Items);
-            MetodoPrivate(app, "QuitaCalidad", new object[] { item, cantidad });
+            // MetodoPrivate(app, "QuitaCalidad", new object[] { item, cantidad });
+            // AssertExtender.InvokePrivateMethod(app, "QuitaCalidad", new object[] { item, cantidad });
+            app.InvokePrivateMethod("QuitaCalidad", new object[] { item, cantidad });
             Assert.AreEqual(qualityResult, item.Quality);
         }
-
-
     }
 }

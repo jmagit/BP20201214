@@ -8,10 +8,14 @@ namespace GildedRose {
         public static readonly int CALIDAD_MAXIMA = 50;
         public static readonly int DEGRADACION_ESTANDAR = 1;
 
-        IList<Item> items;
+        private IList<Item> items;
 
         public GildedRose(IList<Item> Items) {
-            this.items = Items;
+            this.items = new List<Item>();
+            foreach (var item in Items) {
+                items.Add(item.Clone() as Item);
+            }
+            //this.items = Items;
         }
         public void UpdateQuality() {
             foreach (var item in items) {

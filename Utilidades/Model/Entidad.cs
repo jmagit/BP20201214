@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace Utilidades.Model {
     public class Entidad {
+
     }
 }

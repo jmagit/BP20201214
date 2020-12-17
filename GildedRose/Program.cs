@@ -35,7 +35,9 @@ namespace GildedRose {
             };
 
             var app = new GildedRose(Items);
+            //Items[0].Quality = -1;
 
+            //Items.Clear();
 
             for (var i = 0; i < 31; i++) {
                 Console.WriteLine("-------- day " + i + " --------");

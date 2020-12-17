@@ -10,11 +10,13 @@ using System.Reflection;
 namespace Utilidades.Tests {
     [TestClass()]
     public class CalculadoraTests {
-        private static Calculadora calculadora;
+        private static ICalculadora calculadora;
 
         [ClassInitialize]
         public static void ClassInitializeMethod(TestContext context) {
             calculadora = new Calculadora();
+            //calculadora = new CalculadoraCientifica();
+            // calculadora = new OtraCalculadora();
 
             System.Diagnostics.Debug.WriteLine("ClassInitialize - Se ejecuta UNA SOLA VEZ por clase de test. ANTES de ejecutar ningún test.");
         }
@@ -105,5 +107,36 @@ namespace Utilidades.Tests {
         public static void ClassCleanupMethod() {
             System.Diagnostics.Debug.WriteLine("ClassCleanupMethod - Se ejecuta UNA SOLA VEZ por clase de test. DESPUÉS de ejecutar todos los test.");
         }
+
+        delegate double OperacionBinaria(double a, double b);
+
+        [TestMethod()]
+        public void DelegadoTest() {
+            Action<object, EventArgs> ce = (s, e) => Console.WriteLine("algo");
+            calculadora.Notifica += ce;
+            calculadora.Notifica += (s, e) => Console.WriteLine("otro");
+            //calculadora.Notifica -= ce;
+            //CalculadoraCientifica cc = new CalculadoraCientifica();
+            //Calculadora c = new Calculadora();
+            //Elementos<CalculadoraCientifica> ele1 = new Elementos<CalculadoraCientifica>(cc, "");
+            //Elementos<Calculadora> ele2 = new Elementos<Calculadora>(c, "");
+
+            //Elementos<int> ele1 = new Elementos<int>(1, "");
+            //Elementos<string> ele2 = new Elementos<string>("1", "");
+            //Elementos<int> ele3 = new Elementos<int>(22, "");
+
+
+            OperacionBinaria operacion = calculadora.Suma;
+            // ...
+            var resultado = operacion(2, 2);
+
+            Assert.AreEqual(4, resultado);
+        }
+        //delegate int comparador(string a, string b);
+        //void ordenar(string[] tabla, comparador fn) {
+        //    tabla.First((s, b) => {; ; return s.StartsWith("A"); });
+
+        //}
+
     }
 }
