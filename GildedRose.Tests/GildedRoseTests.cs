@@ -34,7 +34,7 @@ namespace GildedRose.Tests {
                 () => Assert.AreEqual(name, app.Items[0].Name),
                 () => Assert.AreEqual(sellInResult, app.Items[0].SellIn, "SellIn"),
                 () => Assert.AreEqual(qualityResult, app.Items[0].Quality, "Quality")
-                , () => throw new Exception("Error forzado")
+                //, () => throw new Exception("Error forzado")
             );
             //string msg = "";
             //if (name != Items[0].Name)

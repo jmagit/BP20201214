@@ -6,9 +6,9 @@ namespace Grupo10.Tests.Core {
     public static class AssertExtender {
         public static void Multiple(this Assert assert, params Action[] assertions) {
             string msg = "";
-            foreach (var caso in assertions)
+            foreach (var verificacion in assertions)
                 try {
-                    caso();
+                    verificacion();
                 } catch (AssertFailedException ex) {
                     msg += ex.Message + " ";
                 } catch {
