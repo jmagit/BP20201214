@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Grupo10.Infrastructure.XXX.Adapters
-{
-    public class Class1
-    {
+namespace Grupo10.Aplication.Contract {
+    public interface IFacturacionService {
+        void FacturarPendiete();
     }
+
 }

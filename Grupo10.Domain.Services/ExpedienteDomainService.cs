@@ -9,10 +9,9 @@ using Grupo10.Domain.Core.Services;
 using Grupo10.Domain.Entities;
 
 namespace Grupo10.Domain.Services {
-    public class ExpedienteDomainService: DomainService<Expediente>, IExpedienteDomainService {
-        IExpedienteRepository repository;
+    public class ExpedienteDomainService : DomainService<Expediente>, IExpedienteDomainService {
 
-        public ExpedienteDomainService(IExpedienteRepository repository):base(repository) { }
-        
+        public ExpedienteDomainService(IExpedienteRepository repository) : base(repository) { }
+
     }
 }

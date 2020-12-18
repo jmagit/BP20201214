@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Grupo10.Domain.Entities {
-    public partial class Expediente: IEntity {
+    public partial class Expediente : IEntity {
+        public bool IsValid() {
+            return true;
+        }
     }
 }

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>a72e3b58-8f29-4a42-9922-05d5f455ebd9</ProjectGuid>
+    <ProjectGuid>{A72E3B58-8F29-4A42-9922-05D5F455EBD9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Grupo10.Aplication.Services</RootNamespace>
@@ -31,24 +31,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="FacturacionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grupo10.Aplication.Contract\Grupo10.Aplication.Contracts.csproj">
+      <Project>{038a6b5b-c7f4-4bc5-a89d-a9dabb07dfa2}</Project>
+      <Name>Grupo10.Aplication.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Contracts\Grupo10.Domain.Contracts.csproj">
+      <Project>{01b20a98-965c-4d52-9183-2458f7a5d1b9}</Project>
+      <Name>Grupo10.Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

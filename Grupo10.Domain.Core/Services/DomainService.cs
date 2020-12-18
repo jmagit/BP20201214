@@ -7,21 +7,24 @@ using Grupo10.Domain.Core.Contracts;
 
 namespace Grupo10.Domain.Core.Services {
     public abstract class DomainService<TEntity> : IDomainService<TEntity> where TEntity : IEntity {
-        IRepository<TEntity> repository;
+        protected IRepository<TEntity> Repository { get; private set; }
         public DomainService(IRepository<TEntity> repository) {
-            this.repository = repository; 
+            this.Repository = repository; 
         }
 
         public void add(TEntity item) {
-            repository.add(item);
+            if(item.IsValid())
+                Repository.add(item);
         }
 
         public void modify(TEntity item) {
-            repository.modify(item);
+            if (item.IsValid())
+                Repository.modify(item);
         }
 
         public void delete(TEntity item) {
-            repository.delete(item);
+            if (item.IsValid())
+                Repository.delete(item);
         }
     }
 }

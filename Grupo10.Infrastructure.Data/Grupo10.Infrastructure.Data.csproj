@@ -45,6 +45,23 @@
     <Compile Include="Repositories\ExpedienteRepository.cs" />
     <Compile Include="UnitOfWork\DBContext.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Grupo10.Domain.Contracts\Grupo10.Domain.Contracts.csproj">
+      <Project>{01b20a98-965c-4d52-9183-2458f7a5d1b9}</Project>
+      <Name>Grupo10.Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Core\Grupo10.Domain.Core.csproj">
+      <Project>{081E879F-5AF2-4C32-8301-6E03946188D2}</Project>
+      <Name>Grupo10.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data.Core\Grupo10.Infrastructure.Data.Core.csproj">
+      <Project>{c022b4a1-f973-40b3-ace9-151cc46a1610}</Project>
+      <Name>Grupo10.Infrastructure.Data.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

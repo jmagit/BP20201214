@@ -41,12 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplication.Services\IFacturacionService.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Infrastructure.Adapters\IPDFGenerate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Aplication.Services\" />
-    <Folder Include="Infrastructure.Adapters\" />
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

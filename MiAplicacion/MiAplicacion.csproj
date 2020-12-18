@@ -94,5 +94,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grupo10.DistributedServices.Client\Grupo10.DistributedServices.Client.csproj">
+      <Project>{7c0172a9-1b21-4965-b2a2-74ec89cb0522}</Project>
+      <Name>Grupo10.DistributedServices.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Wpf.Core.Controls\Grupo10.Wpf.Core.Controls.csproj">
+      <Project>{dd9737b4-2d01-4039-9088-568c92b91adb}</Project>
+      <Name>Grupo10.Wpf.Core.Controls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
