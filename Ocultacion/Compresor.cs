@@ -21,10 +21,6 @@ namespace Ocultacion {
         }
         public static string Descomprimir(String resource) {
             System.Reflection.Assembly _assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            //Stream _fileStream;
-            //_fileStream = _assembly.GetManifestResourceStream(resource);
-
-//            TextReader tr = new StreamReader(_fileStream, System.Text.Encoding.GetEncoding(1252));
             using (var entrada = _assembly.GetManifestResourceStream(_assembly.GetName().Name + "." + resource)) {
                 using (GZipStream compressionStream = new GZipStream(entrada, CompressionMode.Decompress)) {
                     using (StreamReader lector = new StreamReader(compressionStream)) {
