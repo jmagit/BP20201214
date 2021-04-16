@@ -102,6 +102,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculadora", "Calculadora\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculadora.Tests", "Calculadora.Tests\Calculadora.Tests.csproj", "{0BEBDCAC-4129-40A9-9AC0-568ECBF13F0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ocultacion", "Ocultacion\Ocultacion.csproj", "{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -224,6 +226,10 @@ Global
 		{0BEBDCAC-4129-40A9-9AC0-568ECBF13F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BEBDCAC-4129-40A9-9AC0-568ECBF13F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BEBDCAC-4129-40A9-9AC0-568ECBF13F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
