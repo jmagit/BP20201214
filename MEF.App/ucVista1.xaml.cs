@@ -1,7 +1,7 @@
-﻿using Grupo10.Domain.Contracts.Services;
-using Grupo10.Infrastructure.CrossCutting.IoC;
+﻿using MEF.Contratos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MiAplicacion {
-    /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
-            InitializeComponent();
-            IoCContainer.Modo = IoCMode.Testing;
-            var srv = IoCContainer.Resuelve<IExpedienteDomainService>();
-            srv.add(new Grupo10.Domain.Entities.Expediente());
+namespace MEF.App {
+    [Export(typeof(IOpcion))]
+    public class ucVista1Opcion : IOpcion {
+        public string Menu => "Opcion 1";
 
+        public UserControl GetUserControl() {
+            return new ucVista1();
+        }
+    }
+
+    /// <summary>
+    /// Lógica de interacción para ucVista1.xaml
+    /// </summary>
+    public partial class ucVista1 : UserControl {
+        public ucVista1() {
+            InitializeComponent();
         }
     }
 }

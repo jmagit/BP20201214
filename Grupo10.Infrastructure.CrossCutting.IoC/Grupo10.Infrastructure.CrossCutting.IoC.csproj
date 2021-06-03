@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>0c4480d0-72a2-4967-99a1-9d81571e22bd</ProjectGuid>
+    <ProjectGuid>{0C4480D0-72A2-4967-99A1-9D81571E22BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Grupo10.Infrastructure.CrossCutting.IoC</RootNamespace>
@@ -30,25 +30,75 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ClavesNombreSeguro.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.1\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IoCContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ClavesNombreSeguro.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grupo10.Domain.Contracts\Grupo10.Domain.Contracts.csproj">
+      <Project>{01b20a98-965c-4d52-9183-2458f7a5d1b9}</Project>
+      <Name>Grupo10.Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Core\Grupo10.Domain.Core.csproj">
+      <Project>{081e879f-5af2-4c32-8301-6e03946188d2}</Project>
+      <Name>Grupo10.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Services\Grupo10.Domain.Services.csproj">
+      <Project>{f55cb24c-db55-4ef1-9feb-e5ca7f37aa7b}</Project>
+      <Name>Grupo10.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data.Core\Grupo10.Infrastructure.Data.Core.csproj">
+      <Project>{c022b4a1-f973-40b3-ace9-151cc46a1610}</Project>
+      <Name>Grupo10.Infrastructure.Data.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data.Mock\Grupo10.Infrastructure.Data.Mock.csproj">
+      <Project>{c2a208a6-f8ff-4215-9a38-07b19c504726}</Project>
+      <Name>Grupo10.Infrastructure.Data.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data\Grupo10.Infrastructure.Data.csproj">
+      <Project>{42c35cf1-b573-489d-874e-33ffd5faad03}</Project>
+      <Name>Grupo10.Infrastructure.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

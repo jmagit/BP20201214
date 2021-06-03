@@ -11,5 +11,10 @@ using System.Threading.Tasks;
 namespace Grupo10.Infrastructure.Data.Repositories {
     public class ExpedienteRepository : Repository<Expediente>, IExpedienteRepository {
         public ExpedienteRepository(IUnitOfWork dbContext) : base(dbContext) { }
+
+        public override void add(Domain.Entities.Expediente item) {
+            Console.WriteLine("Soy el verdadero");
+        }
+
     }
 }

@@ -4,17 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5FADCCB6-D8DB-4C13-B10D-330DB2272D9C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Ocultacion</RootNamespace>
-    <AssemblyName>Ocultacion</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <ProjectGuid>{C2A208A6-F8FF-4215-9A38-07B19C504726}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Grupo10.Infrastructure.Data.Mock</RootNamespace>
+    <AssemblyName>Grupo10.Infrastructure.Data.Mock</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,22 +24,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\ClavesNombreSeguro.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,20 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compresor.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ExpedienteRepositoryMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <EmbeddedResource Include="cache.bin" />
-    <None Include="ClavesNombreSeguro.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="consultas.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="logo.png" />
+    <ProjectReference Include="..\Grupo10.Domain.Contracts\Grupo10.Domain.Contracts.csproj">
+      <Project>{01b20a98-965c-4d52-9183-2458f7a5d1b9}</Project>
+      <Name>Grupo10.Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Core\Grupo10.Domain.Core.csproj">
+      <Project>{081E879F-5AF2-4C32-8301-6E03946188D2}</Project>
+      <Name>Grupo10.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

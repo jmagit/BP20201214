@@ -34,6 +34,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>snkey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -90,6 +96,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="snkey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -98,6 +105,38 @@
     <ProjectReference Include="..\Grupo10.DistributedServices.Client\Grupo10.DistributedServices.Client.csproj">
       <Project>{7c0172a9-1b21-4965-b2a2-74ec89cb0522}</Project>
       <Name>Grupo10.DistributedServices.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Contracts\Grupo10.Domain.Contracts.csproj">
+      <Project>{01B20A98-965C-4D52-9183-2458F7A5D1B9}</Project>
+      <Name>Grupo10.Domain.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Core\Grupo10.Domain.Core.csproj">
+      <Project>{081e879f-5af2-4c32-8301-6e03946188d2}</Project>
+      <Name>Grupo10.Domain.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Entities\Grupo10.Domain.Entities.csproj">
+      <Project>{5eea515d-ee9a-4820-b42a-c0807ab4ef9c}</Project>
+      <Name>Grupo10.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Domain.Services\Grupo10.Domain.Services.csproj">
+      <Project>{f55cb24c-db55-4ef1-9feb-e5ca7f37aa7b}</Project>
+      <Name>Grupo10.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.CrossCutting.IoC\Grupo10.Infrastructure.CrossCutting.IoC.csproj">
+      <Project>{0c4480d0-72a2-4967-99a1-9d81571e22bd}</Project>
+      <Name>Grupo10.Infrastructure.CrossCutting.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data.Core\Grupo10.Infrastructure.Data.Core.csproj">
+      <Project>{c022b4a1-f973-40b3-ace9-151cc46a1610}</Project>
+      <Name>Grupo10.Infrastructure.Data.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data.Mock\Grupo10.Infrastructure.Data.Mock.csproj">
+      <Project>{c2a208a6-f8ff-4215-9a38-07b19c504726}</Project>
+      <Name>Grupo10.Infrastructure.Data.Mock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grupo10.Infrastructure.Data\Grupo10.Infrastructure.Data.csproj">
+      <Project>{42c35cf1-b573-489d-874e-33ffd5faad03}</Project>
+      <Name>Grupo10.Infrastructure.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Grupo10.Wpf.Core.Controls\Grupo10.Wpf.Core.Controls.csproj">
       <Project>{dd9737b4-2d01-4039-9088-568c92b91adb}</Project>
